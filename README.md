@@ -5,14 +5,12 @@ The repository contains the main algorithms for statistical analysis of datasets
 The main program for this research is ***STAT_project***, moreover project is related to 3 additional modules: ***DAV_metric***, ***KGE_RMSD***, ***taylorDiagram***
 
 
-
 1. The ***DAV_metric*** is a module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1] calulations:
 <img src="https://render.githubusercontent.com/render/math?math=DAV =\frac{S_{EXP}-S_{CTR}}{S_{CTR}}">
   
 2. The ***KGE_RMSD*** is a module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2] calculations  
-<img src="https://render.githubusercontent.com/render/math?math=KGE = 1 - \sgrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_OBS}-1)^{2}+(\frac{\mu_EXP}{\mu_OBS}-1)^{2}}">
 
-<img src="https://render.githubusercontent.com/render/math?math=KGE =1-\sqrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_OBS}-1)^{2}+(\frac{\mu_EXP}{\mu_OBS}-1)^{2}}">
+<img src="https://render.githubusercontent.com/render/math?math=KGE =1-\sqrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_{OBS}}-1)^{2}+(\frac{\mu_{EXP}}{\mu_{OBS}}-1)^{2}}">
 
 3. The ***taylorDiagram*** is a module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]
 
