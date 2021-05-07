@@ -16,8 +16,6 @@ The main program for this research is ***STAT_project***, moreover project is re
 ![temp](https://github.com/EvgenyChur/LU_stat_system/blob/main/Temp_diff.JPG?raw=true)
 
 
-![taylorDiagram](https://github.com/EvgenyChur/LU_stat_system/blob/main/Capture.JPG?raw=true)
-
 
 3. The ***taylorDiagram*** is a module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]
 
