@@ -11,9 +11,7 @@ The main program for this research is ***STAT_project***, moreover project is re
 2. The ***KGE_RMSD*** is a module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2] calculations  
 
 <img src="https://render.githubusercontent.com/render/math?math=KGE =1-\sqrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_{OBS}}-1)^{2}+(\frac{\mu_{EXP}}{\mu_{OBS}}-1)^{2}}">
-
-
-![image](https://user-images.githubusercontent.com/51716145/117444740-2940ab00-af3a-11eb-95da-3927f98a9b98.png)
+![temp](https://github.com/EvgenyChur/LU_stat_system/blob/main/Temp_diff.JPG?raw=true)
 
 ![taylorDiagram](https://github.com/EvgenyChur/LU_stat_system/blob/main/Capture.JPG?raw=true)
 
