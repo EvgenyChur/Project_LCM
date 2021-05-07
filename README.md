@@ -12,7 +12,7 @@ The main program for this research is ***STAT_project***, moreover project is re
 2. The ***KGE_RMSD*** is a module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2] calculations  
 <img src="https://render.githubusercontent.com/render/math?math=KGE = 1 - \sgrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_OBS}-1)^{2}+(\frac{\mu_EXP}{\mu_OBS}-1)^{2}}">
 
-
+<img src="https://render.githubusercontent.com/render/math?math=DAV =\sqrt{2}">
 
 3. The ***taylorDiagram*** is a module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]
 
