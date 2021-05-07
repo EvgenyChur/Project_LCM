@@ -12,7 +12,7 @@ The main program for this research is ***STAT_project***, moreover project is re
 
 <img src="https://render.githubusercontent.com/render/math?math=KGE =1-\sqrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_{OBS}}-1)^{2}+(\frac{\mu_{EXP}}{\mu_{OBS}}-1)^{2}}">
 
-### Temperature difference to control simulation
+
 ![image](https://user-images.githubusercontent.com/51716145/117444740-2940ab00-af3a-11eb-95da-3927f98a9b98.png)
 
 ![taylorDiagram](https://github.com/EvgenyChur/LU_stat_system/blob/main/Capture.JPG?raw=true)
