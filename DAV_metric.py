@@ -36,20 +36,12 @@ import pandas as pd
 #------------------------------------------------------------------------------
 # Subroutine: get_dav
 #------------------------------------------------------------------------------
-#
-# The subroutine needs for getting data for DAV analisis
+## The subroutine needs for getting data for DAV analisis
 # 
 # Input parameters : iPath   - absolute path for data
 #                    ts_name - the name of parameter for analysis   
 #
 # Output parameters: ts      - timeseries with intersting parameter 
-#
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 25.03.2021
-# email: evgenychur@uni-kassel.de
-#
 #------------------------------------------------------------------------------
 
 def get_dav(iPath, ts_name):
@@ -67,25 +59,14 @@ def get_dav(iPath, ts_name):
 #------------------------------------------------------------------------------
 
 
-
-
-
 #------------------------------------------------------------------------------
 # Subroutine: get_pdg
 #------------------------------------------------------------------------------
-#
-# The subroutine needs for getting probability density function
+## The subroutine needs for getting probability density function
 # 
 # Input parameters : data_array - array with data
 #
 # Output parameters: list_num   - probability density function  
-#
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 25.03.2021
-# email: evgenychur@uni-kassel.de
-#
 #------------------------------------------------------------------------------
 
 def get_pdf(data_array):
@@ -131,16 +112,12 @@ def get_pdf(data_array):
 
     return list_num
 
-
 # end Subroutine get_pdf
 #------------------------------------------------------------------------------
-
-
 
 #------------------------------------------------------------------------------
 # Subroutine: DAV_metric
 #------------------------------------------------------------------------------
-#
 # The subroutine needs for DAV calculations
 # 
 # Input parameters : pr1 - high resolution parameter
@@ -148,28 +125,16 @@ def get_pdf(data_array):
 #                    pr3 - obse  rvations 
 #
 # Output parameters: DAV - the DAV metric 
-#
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 25.03.2021
-# email: evgenychur@uni-kassel.de
-#
 #------------------------------------------------------------------------------
 
 def DAV_metric(pr1, pr2, pr3):
     s_hr = 0 
     s_lr = 0
-
     for j in range(len(pr1)):
-        s_hr = s_hr + min(pr1[j], pr3[j])
-        
-        s_lr = s_lr + min(pr2[j], pr3[j])
-    
-    
+        s_hr = s_hr + min(pr1[j], pr3[j])       
+        s_lr = s_lr + min(pr2[j], pr3[j])  
     DAV = (s_hr - s_lr) / s_lr
     return DAV
-
 # end Subroutine DAV_metric
 #------------------------------------------------------------------------------
 
@@ -181,21 +146,16 @@ def DAV_metric(pr1, pr2, pr3):
 #
 # The subroutine needs for DAV calculations
 # 
-# Input parameters : mf_com          - the main path to folder
-#                    sf_data_ref_dav - subfolder for reference data
-#                    sf_data_ds_dav  - subfolder for model data
-#                    par_list        - the list with parameters
-#                    ds_name         - the name of model dataset
-
-
+# Input parameters : mf_com      - the main path to folder
+#                    sf_obs_data - subfolder for observation data
+#                    sf_lr_data  - subfolder for reference model data
+#                    sf_hr_data  - subfolder for experiment model data                     
+#                    par_list    - the list with parameters
+#                    refer       - the name of reference dataset
+#                    ds_name     - the name of model dataset
+#                    mode        - the type of data for work
+#
 # Output parameters: DAV_list - the DAV list for parameters from par_list 
-#
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 25.03.2021
-# email: evgenychur@uni-kassel.de
-#
 #------------------------------------------------------------------------------
 
 def DAV_analysis(mf_com, sf_obs_data, 
@@ -204,7 +164,6 @@ def DAV_analysis(mf_com, sf_obs_data,
                          par_list, refer, ds_name, mode):
     
     # FileNames for data
-    #d_obs = refer             + '_' + par_list + '_mean_dav_obs.csv'
     d_obs = 'hyras'           + '_' + par_list + '_mean_dav_obs.csv'
     
     if mode == 1:
@@ -221,7 +180,7 @@ def DAV_analysis(mf_com, sf_obs_data,
     path_lr  = mf_com + sf_lr_data  + d_lr
     path_hr  = mf_com + sf_hr_data  + d_hr    
     
-    
+    # get data
     df_dav_obs = get_dav(path_obs, 'OBS')
     df_dav_lr  = get_dav(path_lr , 'LR')
     df_dav_hr  = get_dav(path_hr , 'HR')
