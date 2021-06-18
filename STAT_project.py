@@ -57,10 +57,8 @@ There are several options for ds_name --> should be changed according to dataset
 
 mode = 3
 
-
 #precip = 'yes'
 precip = 'no'
-
 
 if mode == 1:
     # The main path for folder with data
@@ -129,9 +127,6 @@ else:
 path_exit = mf_com + 'RESULT/'
 
 
-
-
-
 df_fin_list = []
 for j in range(len(ds_name)):
     # Subfolders for KGE and RMSD data
@@ -145,33 +140,24 @@ for j in range(len(ds_name)):
     for i in range(len(par_list)):
         #----------------------------------------------------------------------
         # Section 1: Run KGE and RMSD statistic analysis
-        #----------------------------------------------------------------------
-        
+        #----------------------------------------------------------------------      
         kge_res, rmsd_res, cor_res =  kge.KGE_RMSD_analysis(mf_com    , sf_data_ref,
                                                             sf_data_ds, par_list[i],
                                                             refer     , ds_name[j] , mode)
-
-
-    
         #----------------------------------------------------------------------
         # Section 2: Run DAV statistic analysis
-        #----------------------------------------------------------------------
-        
+        #----------------------------------------------------------------------  
         dav_res = dav.DAV_analysis(mf_com, sf_obs_data, 
                                            sf_lr_data ,
                                            sf_hr_data ,
                                            par_list[i], refer, ds_name[j], mode)
-
         #----------------------------------------------------------------------
         # Section 3: Import results to excel
         #----------------------------------------------------------------------
-        
-              
+                  
         STAT_result ={'Unit' : par_list[i], 'KGE' : kge_res, 'RMSD' : rmsd_res, 'CORR' : cor_res, 'DAV' : dav_res}
      
-        df_stat = pd.DataFrame(list(STAT_result.items()), columns = ['Parameter','Values'])
-
-        
+        df_stat = pd.DataFrame(list(STAT_result.items()), columns = ['Parameter','Values'])       
         
         df_stat_list.append(df_stat)
     
@@ -195,7 +181,7 @@ Rawlins., R. S. Bradley, H. F. Diaz, 2012. Assessment of regional climate
 model simulation estimates over the Northeast United States, Journal of
 Geophysical Research (2012JGRD..11723112R).
 """
-"""
+
 # Reference std
 stdrefs = dict(tot_prec = 1.0)
 
@@ -269,22 +255,5 @@ fig.tight_layout()
 
 plt.savefig(path_exit + 'taylor_diagram' + '.png', format='png', dpi = 300) 
 plt.show()
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
