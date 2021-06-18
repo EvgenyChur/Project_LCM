@@ -3,7 +3,6 @@
 """
 The STAT_project is the main program for statistical analysis of different
 land cover maps on regional climate in convection-permitting climate simulations.
-
 The progam contains several additional modules:
     DAV_metric       ---> module with algoritms for DAV metrci analysis
     KGE_RMSD         ---> module with KGE and RMSD metrci analysis
@@ -13,27 +12,24 @@ The progam contains several additional modules:
 Autors of project: Evgenii Churiulin, Merja Tölle, Huan Zhang, 
                                                 Center for Enviromental System
                                                 Research (CESR) 
-
                                                    
 Current Code Owner: CESR, Evgenii Churiulin
 phone:  +49  561 804-6142
 fax:    +49  561 804-6116
 email:  evgenychur@uni-kassel.de
-
-
 History:
 Version    Date       Name
 ---------- ---------- ----                                                   
     1.1    2021-03-23 Evgenii Churiulin, Center for Enviromental System Research (CESR)
            Initial release
                  
-
 """
 
 #------------------------------------------------------------------------------
 # Import liblararies and personal modules
 #------------------------------------------------------------------------------
 import numpy as np
+import pandas as pd
 import DAV_metric as dav
 import KGE_RMSD   as kge 
 import matplotlib.pyplot as plt
@@ -41,20 +37,6 @@ from taylorDiagram import TaylorDiagram
 #------------------------------------------------------------------------------
 
 # Start the main programm
-
-#------------------------------------------------------------------------------
-# Section: Can be changed by user
-#------------------------------------------------------------------------------ 
-
-# The main path for folder with data
-mf_com = 'C:/Users/Churiulin/Desktop/STAT3/'
-
-# path for results
-path_exit = mf_com + 'RESULT/'
-
-
-refer = 'hyras'
-
 '''  
 There are several options for ds_name --> should be changed according to dataset
 'E2015' - CCL2015
@@ -62,43 +44,145 @@ There are several options for ds_name --> should be changed according to dataset
     'E' - 
     'G' - GLC2000
    'GC' - GlobCover2009
+   'ECO'- EcoClimMap
 '''
 
-ds_name = 'GC'
-
-# Subfolders for KGE and RMSD data
-sf_data_ref   = 'DATA/REFERENCE/'                                              # The subfolder for data
-sf_data_ds    = 'DATA/' + ds_name + '/'
-
-# Subfolders for DAV data
-sf_data_ref_dav   = 'DATA_DAV/REFERENCE/'                                      # The subfolder for data
-sf_data_ds_dav    = 'DATA_DAV/' + ds_name + '/'
-sf_data_hyras     = 'DATA_DAV/HYRAS/'
-
-
-# Parameter list
-par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M', 'TOT_PREC']
-
-
-
 #------------------------------------------------------------------------------
-# Section 2: Run KGE and RMSD statistic analysis
-#------------------------------------------------------------------------------
+# Section: Can be changed by user
+#------------------------------------------------------------------------------ 
 
-kge_list, rmsd_list, kge_field_list, rmsd_field_list, corr_field_list =  kge.KGE_RMSD_analysis(mf_com, 
-                                                                                               sf_data_ref,
-                                                                                               sf_data_ds,
-                                                                                               par_list,
-                                                                                               refer,
-                                                                                               ds_name)
+# Parameters for statistical work: 1 - Reference dataset GlobCover2009
+#                                  2 - Reference dataset GLC2000
+#                                  3 - Reference dataset HYRAS
 
-#------------------------------------------------------------------------------
-# Section 3: Run DAV statistic analysis
-#------------------------------------------------------------------------------
+mode = 3
 
-DAV_data = dav.DAV_analysis(mf_com, sf_data_ds_dav ,
-                                    sf_data_hyras  ,
-                                    par_list, ds_name)
+
+#precip = 'yes'
+precip = 'no'
+
+
+if mode == 1:
+    # The main path for folder with data
+    mf_com = 'C:/Users/Churiulin/Desktop/STAT/'
+    # The REFERENCE dataset
+    refer = 'LU_GC'
+    # Subfolders for KGE and RMSD data
+    sf_data_ref  = 'DATA/GC/'  
+    # Subfolders for DAV data
+    sf_obs_data   = 'DATA/HYRAS/'                                              
+    sf_lr_data    = 'DATA/GC/'
+    # Calculate different parameters
+    if precip == 'yes':
+        ds_name = ['E2015', 'E38', 'E', 'G']
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M', 'TOT_PREC']    
+    elif precip == 'no':
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M']
+        ds_name = ['E2015', 'E38', 'E', 'G', 'ECO']
+    else:
+        print('No data')
+        
+elif mode == 2:
+    # The main path for folder with data
+    mf_com = 'C:/Users/Churiulin/Desktop/STAT2/'
+    # The REFERENCE dataset
+    refer = 'LU_G'
+    # Subfolders for KGE and RMSD data
+    sf_data_ref  = 'DATA/G/'       
+    # Subfolders for DAV data
+    sf_obs_data   = 'DATA/HYRAS/'                                              
+    sf_lr_data    = 'DATA/G/'
+    # Calculate different parameters
+    if precip == 'yes':
+        ds_name = ['E2015', 'E38', 'E', 'GC']
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M', 'TOT_PREC']    
+    elif precip == 'no':
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M']
+        ds_name = ['E2015', 'E38', 'E', 'GC', 'ECO']
+    else:
+        print('No data')
+    
+elif mode == 3:
+    # The main path for folder with data
+    mf_com = 'C:/Users/Churiulin/Desktop/STAT3/'
+    # Reference dataset
+    refer  = 'hyras'
+    # Subfolders for KGE and RMSD data
+    sf_data_ref  = 'DATA/HYRAS/'      
+    # Subfolders for DAV data
+    sf_obs_data   = 'DATA/HYRAS/'                                              
+    sf_lr_data    = 'DATA/GC/'      
+    # Calculate different parameters
+    if precip == 'yes':
+        ds_name = ['E2015', 'E38', 'E', 'G', 'GC']
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M', 'TOT_PREC']    
+    elif precip == 'no':
+        par_list = ['T_2M', 'TMAX_2M', 'TMIN_2M']
+        ds_name = ['E2015', 'E38', 'E', 'G', 'GC', 'ECO']
+    else:
+        print('No data')
+else:
+    print('Change reference dataset')
+    
+    
+# path for results
+path_exit = mf_com + 'RESULT/'
+
+
+
+
+
+df_fin_list = []
+for j in range(len(ds_name)):
+    # Subfolders for KGE and RMSD data
+    sf_data_ds    = 'DATA/' + ds_name[j] + '/'
+    # Subfolders for DAV data
+    sf_hr_data    = 'DATA/' + ds_name[j] + '/'
+    
+    df_stat_list = []
+    
+    
+    for i in range(len(par_list)):
+        #----------------------------------------------------------------------
+        # Section 1: Run KGE and RMSD statistic analysis
+        #----------------------------------------------------------------------
+        
+        kge_res, rmsd_res, cor_res =  kge.KGE_RMSD_analysis(mf_com    , sf_data_ref,
+                                                            sf_data_ds, par_list[i],
+                                                            refer     , ds_name[j] , mode)
+
+
+    
+        #----------------------------------------------------------------------
+        # Section 2: Run DAV statistic analysis
+        #----------------------------------------------------------------------
+        
+        dav_res = dav.DAV_analysis(mf_com, sf_obs_data, 
+                                           sf_lr_data ,
+                                           sf_hr_data ,
+                                           par_list[i], refer, ds_name[j], mode)
+
+        #----------------------------------------------------------------------
+        # Section 3: Import results to excel
+        #----------------------------------------------------------------------
+        
+              
+        STAT_result ={'Unit' : par_list[i], 'KGE' : kge_res, 'RMSD' : rmsd_res, 'CORR' : cor_res, 'DAV' : dav_res}
+     
+        df_stat = pd.DataFrame(list(STAT_result.items()), columns = ['Parameter','Values'])
+
+        
+        
+        df_stat_list.append(df_stat)
+    
+    df_statistic = pd.concat(df_stat_list, axis = 1)
+    
+    df_fin_list.append(df_statistic)
+
+df_fin = pd.concat(df_fin_list)  
+  
+df_fin.to_excel(path_exit + 'Statistic' + '.xlsx',  float_format='%.3f')
+
 
 
 #------------------------------------------------------------------------------
@@ -111,7 +195,7 @@ Rawlins., R. S. Bradley, H. F. Diaz, 2012. Assessment of regional climate
 model simulation estimates over the Northeast United States, Journal of
 Geophysical Research (2012JGRD..11723112R).
 """
-
+"""
 # Reference std
 stdrefs = dict(tot_prec = 1.0)
 
@@ -185,19 +269,7 @@ fig.tight_layout()
 
 plt.savefig(path_exit + 'taylor_diagram' + '.png', format='png', dpi = 300) 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
+"""
 
 
 
