@@ -36,37 +36,21 @@ import pandas as pd
 #------------------------------------------------------------------------------
 # Subroutine: get_data
 #------------------------------------------------------------------------------
-#
 # The subroutine needs for getting actual information from dataset
-#
 # 
 # Input parameters : path     - path for data
 #                    par_name - name of columns   
-#
-#
-# Output parameters: df - the data frame with information about interesting 
-#                         parameter
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 24.03.2021
-#
-# email: evgenychur@uni-kassel.de
-#
+# Output parameters: df       - the data frame with information about interesting 
+#                               parameter
 #------------------------------------------------------------------------------
-
 
 def get_data(path, par_name):
     df = pd.read_csv(path, skiprows = 0, sep=' ', skipinitialspace = True, 
                      na_values = ['-999','-1','***','******'])
     df = df.drop(['#', 'value', 'Unnamed: 5'], axis = 1 )
-    df.columns = ['lon', 'lat', par_name]  
-    
-    df = df.drop(['lon', 'lat'], axis = 1 )
-    
+    df.columns = ['lon', 'lat', par_name]     
+    df = df.drop(['lon', 'lat'], axis = 1 )   
     return df
-
-
 # end Subroutine get_data
 #------------------------------------------------------------------------------
 
@@ -74,70 +58,40 @@ def get_data(path, par_name):
 #------------------------------------------------------------------------------
 # Subroutine: get_grid
 #------------------------------------------------------------------------------
-#
-# The subroutine needs for getting actual information about longitude and latitude
-# for current grid
-#
+# The subroutine needs for getting actual information about longitude and
+# latitude for current grid
 # 
 # Input parameters : path     - path for data
 #                    par_name - name of columns    
 #
-#
 # Output parameters: lat - latitude
 #                    lon - longitude
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 24.03.2021
-#
-# email: evgenychur@uni-kassel.de
-#
 #------------------------------------------------------------------------------
-
-
 def get_grid(path, par_name):
     df = pd.read_csv(path, skiprows = 0, sep=' ', skipinitialspace = True, 
                      na_values = ['-999','-1','***','******'])
     df = df.drop(['#', 'value', 'Unnamed: 5'], axis = 1 )
-    df.columns = ['lon', 'lat', par_name]  
-    
-    df = df.drop([par_name], axis = 1 )
-    
+    df.columns = ['lon', 'lat', par_name]      
+    df = df.drop([par_name], axis = 1 ) 
     lon = df['lon']
-    lat = df['lat']
-    
+    lat = df['lat']  
     return lon, lat
-
 # end Subroutine get_grid
 #------------------------------------------------------------------------------
-
-
-
-
 
 #------------------------------------------------------------------------------
 # Subroutine: KGE_RMSD_analysis
 #------------------------------------------------------------------------------
-#
 # The subroutine needs for statistical analysis of the datasets
+# Input parameters : mf_com      - the main path to folder
+#                    sf_data_ref - subfolder for reference data
+#                    sf_data_ds  - subfolder for model data
+#                    par_list    - the list with parameters
+#                    refer       - the name of reference data set 
+#                    ds_name     - the name of model dataset  
+#                    mode        - type of data for work 
 #
-# 
-# Input parameters : mf_com          - the main path to folder
-#                    sf_data_ref_dav - subfolder for reference data
-#                    sf_data_ds_dav  - subfolder for model data
-#                    par_list        - the list with parameters
-#                    refer           - the name of reference data set 
-#                    ds_name         - the name of model dataset  
-#
-#
-# Output parameters: statistical parameters in a pront version
-# 
-#
-# Author: Evgenii Churiulin, Merja Tölle, Center for Environmental Systems
-#                                         Research (CESR) --- 24.03.2021
-#
-# email: evgenychur@uni-kassel.de
-#
+# Output parameters: ref_kge, ref_rmsd, ref_corr - statistical parameters
 #------------------------------------------------------------------------------
 
 def KGE_RMSD_analysis(mf_com, sf_data_ref, sf_data_ds, par_list, refer, ds_name, mode):
@@ -158,8 +112,7 @@ def KGE_RMSD_analysis(mf_com, sf_data_ref, sf_data_ds, par_list, refer, ds_name,
     path_s_obs = mf_com + sf_data_ref + s_obs
     path_m_mod = mf_com + sf_data_ds  + m_mod
     path_s_mod = mf_com + sf_data_ds  + s_mod
-    path_c     = mf_com + sf_data_ds  + c_name
-        
+    path_c     = mf_com + sf_data_ds  + c_name        
         
     # Get data    
     df_mean_obs = get_data(path_m_obs, 'M_obs' )
@@ -182,8 +135,6 @@ def KGE_RMSD_analysis(mf_com, sf_data_ref, sf_data_ds, par_list, refer, ds_name,
     # Delete previous index
     df_data = df_data.drop(['index'], axis = 1 )
 
-    
-
     # Create two zero timeseries
     kge  = pd.Series(np.nan, index = df_data.index, name = 'KGE' )
     rmsd = pd.Series(np.nan, index = df_data.index, name = 'RMSD')
@@ -192,30 +143,21 @@ def KGE_RMSD_analysis(mf_com, sf_data_ref, sf_data_ds, par_list, refer, ds_name,
     ref_corr = np.mean(df_data['P'])
     print('CORR ' + ds_name + '_' + par_list + ' - ',  
               "{:.3f}".format(ref_corr), '\n')    
-
-   
-    # Get KGE and RMSD
  
-    for row in range(len(df_data)):
-            
+    # Get KGE and RMSD
+    for row in range(len(df_data)):          
         kge[row] = 1.0 - math.sqrt((df_data['P'][row] - 1.0 )**2.0 + 
                                    (df_data['S_mod'][row] / df_data['S_obs'][row] - 1.0 )**2.0 +
                                    (df_data['M_mod'][row] / df_data['M_obs'][row] - 1.0 )**2.0 ) 
-
         #print (row, '-', len(kge))        
         if row == (len(kge) - 1):
             print ('hel')
             if kge[row] < -1.5:
                 kge[row] = kge[row - 1]
-
         else:
             if kge[row] < -1.5:
                 kge[row] = (kge[row-1] + kge[row+1]) / 2.0
-
-  
-
-
-        
+                
         try:
             rmsd[row] = math.sqrt((df_data['S_obs'][row])**2.0 + 
                                   (df_data['S_mod'][row])**2.0 -
@@ -231,22 +173,8 @@ def KGE_RMSD_analysis(mf_com, sf_data_ref, sf_data_ds, par_list, refer, ds_name,
                                                     df_data['S_mod'][row] * 
                                                     df_data['P'][row]))        
         
-   
     ref_kge  = np.mean(kge)
     ref_rmsd = np.mean(rmsd)
     
     return ref_kge, ref_rmsd, ref_corr  
-
-
-       
-
-                 
-
-        
-
-       
-               
-
-
-    
-
+  
