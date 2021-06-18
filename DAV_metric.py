@@ -2,12 +2,10 @@
 """
 The DAV_metric is the program for calculation the distribution added value (DAV)
 index based on work (Soares and Cardoso, 2017).
-
 Soares, P.M.M. Cardoso, R.M.: A simple method to assess the added value using 
 high-resolution climate distributions: Application to the EURO-CORDEX daily 
 precipitation. Int. J. Climatol. 2017, 38, 1484–1498.
 https://doi.org/10.1002/joc.5261                
-
                                       
 The progam contains several subroutine:
     get_dav       ---> The subroutine needs for getting data for DAV analisis 
@@ -18,21 +16,17 @@ The progam contains several subroutine:
 Autors of project: Evgenii Churiulin, Merja Tölle, Huan Zhang, 
                                                 Center for Enviromental System
                                                 Research (CESR) 
-
                                                    
 Current Code Owner: CESR, Evgenii Churiulin
 phone:  +49  561 804-6142
 fax:    +49  561 804-6116
 email:  evgenychur@uni-kassel.de
-
-
 History:
 Version    Date       Name
 ---------- ---------- ----                                                   
     1.1    2021-03-25 Evgenii Churiulin, Center for Enviromental System Research (CESR)
            Initial release
                  
-
 """
 
 
@@ -76,7 +70,6 @@ def get_dav(iPath, ts_name):
 
 
 
-
 #------------------------------------------------------------------------------
 # Subroutine: get_pdg
 #------------------------------------------------------------------------------
@@ -84,7 +77,6 @@ def get_dav(iPath, ts_name):
 # The subroutine needs for getting probability density function
 # 
 # Input parameters : data_array - array with data
-#                    key        - the name of column for analysis   
 #
 # Output parameters: list_num   - probability density function  
 #
@@ -96,7 +88,7 @@ def get_dav(iPath, ts_name):
 #
 #------------------------------------------------------------------------------
 
-def get_pdf(data_array, key):
+def get_pdf(data_array):
     
     df_mod = data_array
     
@@ -112,23 +104,23 @@ def get_pdf(data_array, key):
     count_10 = 0  # for values wich are bigger then 30
     
     for j in range(len(df_mod)):
-        if df_mod[key][j] < -10.0:
+        if df_mod[j] < -10.0:
             count_1 = count_1 + 1
-        elif df_mod[key][j] >= -10.0 and df_mod['T_2M'][j] < -5.0:
+        elif df_mod[j] >= -10.0 and df_mod[j] < -5.0:
             count_2 = count_2 + 1
-        elif df_mod[key][j] >= -5.0  and df_mod['T_2M'][j] < -0.0: 
+        elif df_mod[j] >= -5.0  and df_mod[j] < -0.0: 
             count_3 = count_3 + 1
-        elif df_mod[key][j] >=  0.0  and df_mod['T_2M'][j] <  5.0: 
+        elif df_mod[j] >=  0.0  and df_mod[j] <  5.0: 
             count_4 = count_4 + 1
-        elif df_mod[key][j] >=  5.0  and df_mod['T_2M'][j] < 10.0: 
+        elif df_mod[j] >=  5.0  and df_mod[j] < 10.0: 
             count_5 = count_5 + 1
-        elif df_mod[key][j] >=  10.0 and df_mod['T_2M'][j] < 15.0: 
+        elif df_mod[j] >=  10.0 and df_mod[j] < 15.0: 
             count_6 = count_6 + 1
-        elif df_mod[key][j] >=  15.0 and df_mod['T_2M'][j] < 20.0: 
+        elif df_mod[j] >=  15.0 and df_mod[j] < 20.0: 
             count_7 = count_7 + 1
-        elif df_mod[key][j] >=  20.0 and df_mod['T_2M'][j] < 25.0: 
+        elif df_mod[j] >=  20.0 and df_mod[j] < 25.0: 
             count_8 = count_8 + 1
-        elif df_mod[key][j] >=  25.0 and df_mod['T_2M'][j] < 30.0: 
+        elif df_mod[j] >=  25.0 and df_mod[j] < 30.0: 
             count_9 = count_9 + 1
         else:  
             count_10 = count_10 + 1        
@@ -142,7 +134,6 @@ def get_pdf(data_array, key):
 
 # end Subroutine get_pdf
 #------------------------------------------------------------------------------
-
 
 
 
@@ -184,8 +175,6 @@ def DAV_metric(pr1, pr2, pr3):
 
 
 
-
-
 #------------------------------------------------------------------------------
 # Subroutine: DAV_analysis
 #------------------------------------------------------------------------------
@@ -209,115 +198,92 @@ def DAV_metric(pr1, pr2, pr3):
 #
 #------------------------------------------------------------------------------
 
-
-def DAV_analysis(mf_com, sf_data_ds_dav ,
-                         sf_data_hyras  ,
-                         par_list, ds_name):
+def DAV_analysis(mf_com, sf_obs_data, 
+                         sf_lr_data ,
+                         sf_hr_data ,
+                         par_list, refer, ds_name, mode):
     
-    # The lists for filenames
-    dav_name_obs = []
-    dav_name_mod = []
-    dav_name_hyr = []
+    # FileNames for data
+    #d_obs = refer             + '_' + par_list + '_mean_dav_obs.csv'
+    d_obs = 'hyras'           + '_' + par_list + '_mean_dav_obs.csv'
     
-    for i in range(len(par_list)):
-        # FileNames for data
-        d_obs  = 'LU_'    + 'GC'    + '_' + par_list[i] + '_fldmean_mod.csv'
-        d_mod  = 'LU_'    + ds_name + '_' + par_list[i] + '_fldmean_mod.csv'
-        d_hyr  = 'hyras_' + par_list[i] + '_mean.csv' 
+    if mode == 1:
+        d_lr  = 'LU_GC'           + '_' + par_list + '_mean_dav_obs.csv'       # mode 1
+    elif mode == 2:
+        d_lr  = 'LU_G'            + '_' + par_list + '_mean_dav_obs.csv'       # mode 2
+    else:
+        d_lr  = 'LU_GC'           + '_' + par_list + '_mean_dav_mod.csv'       # mode 3
     
-        dav_name_obs.append(d_obs)
-        dav_name_mod.append(d_mod)
-        dav_name_hyr.append(d_hyr)
-
-
-    # The lists for data path
-    iPath_dav_obs = []
-    iPath_dav_mod = []
-    iPath_dav_hyr = []
+    d_hr  = 'LU_'   + ds_name + '_' + par_list + '_mean_dav_mod.csv'  
     
-    for i in range(len(par_list)):
-        # Paths for data
-        path_d_obs = mf_com + 'DATA_DAV/GC/' + dav_name_obs[i]
-        path_d_mod = mf_com + sf_data_ds_dav  + dav_name_mod[i]
-        path_d_hyr = mf_com + sf_data_hyras   + dav_name_hyr[i]
-    
-        iPath_dav_obs.append(path_d_obs)
-        iPath_dav_mod.append(path_d_mod)
-        iPath_dav_hyr.append(path_d_hyr)
-
-
-    df_list_obs = []    
-    df_list_mod = []
-    df_list_hyr = []
-    
-    for i in range(len(par_list)):
-        df_dav_obs = get_dav(iPath_dav_obs[i], par_list[i])
-        df_dav_mod = get_dav(iPath_dav_mod[i], par_list[i])
-        df_dav_hyr = get_dav(iPath_dav_hyr[i], par_list[i])
-    
-        df_list_obs.append(df_dav_obs)    
-        df_list_mod.append(df_dav_mod) 
-        df_list_hyr.append(df_dav_hyr)
-        
-    
-    df_obs = pd.concat(df_list_obs, axis = 1)
-    df_mod = pd.concat(df_list_mod, axis = 1)
-    df_hyr = pd.concat(df_list_hyr, axis = 1)
-    
-    df_obs = df_obs.resample('D').mean()
-    df_mod = df_mod.resample('D').mean()
-    df_hyr = df_hyr.resample('D').mean()
+    # Paths for data
+    path_obs = mf_com + sf_obs_data + d_obs
+    path_lr  = mf_com + sf_lr_data  + d_lr
+    path_hr  = mf_com + sf_hr_data  + d_hr    
     
     
-    for j in range(len(df_obs)):
-        if df_obs['TOT_PREC'][j] < 0.09:
-            df_obs['TOT_PREC'][j] = 0.0
-    
-    for j in range(len(df_mod)):
-        if df_mod['TOT_PREC'][j] < 0.09:
-            df_mod['TOT_PREC'][j] = 0.0        
-        
-    for j in range(len(df_hyr)):
-        if df_hyr['TOT_PREC'][j] < 0.09:
-            df_hyr['TOT_PREC'][j] = 0.0
-
-
+    df_dav_obs = get_dav(path_obs, 'OBS')
+    df_dav_lr  = get_dav(path_lr , 'LR')
+    df_dav_hr  = get_dav(path_hr , 'HR')
+         
+    df_data = pd.concat([df_dav_obs, df_dav_lr, df_dav_hr], axis = 1) 
 
     # Create PDF for temperature
-    t2m_mean_obs = get_pdf(df_obs, par_list[0])
-    t2m_mean_mod = get_pdf(df_mod, par_list[0])
-    t2m_mean_hyr = get_pdf(df_hyr, par_list[0])
-    
-    # T2m_max   
-    t2m_max_obs  = get_pdf(df_obs, par_list[1])
-    t2m_max_mod  = get_pdf(df_mod, par_list[1])
-    t2m_max_hyr  = get_pdf(df_hyr, par_list[1])
-    
-    #T2m_min
-    t2m_min_obs  = get_pdf(df_obs, par_list[2])
-    t2m_min_mod  = get_pdf(df_mod, par_list[2])
-    t2m_min_hyr  = get_pdf(df_hyr, par_list[2])
-    
-    # TOT_PREC
-    tot_prec_obs = get_pdf(df_obs, par_list[3])
-    tot_prec_mod = get_pdf(df_mod, par_list[3])
-    tot_prec_hyr = get_pdf(df_hyr, par_list[3])       
-    
+    obs = get_pdf(df_data['OBS'])
+    lr  = get_pdf(df_data['LR'] )
+    hr  = get_pdf(df_data['HR'] )
+             
+        
     # Calculate DAV metric
-    DAV_t2m_mean = DAV_metric(t2m_mean_mod, t2m_mean_obs, t2m_mean_hyr)
-    DAV_t2m_max  = DAV_metric(t2m_max_mod , t2m_max_obs , t2m_max_hyr )
-    DAV_t2m_min  = DAV_metric(t2m_min_mod , t2m_min_obs , t2m_min_hyr )
-    DAV_prec_tot = DAV_metric(tot_prec_mod, tot_prec_obs, tot_prec_hyr)
-    
-    print('DAV_T2M_MEAN ', "{:.3f}".format(DAV_t2m_mean), '\n')
-    print('DAV_T2M_MAX ' , "{:.3f}".format(DAV_t2m_max ), '\n')
-    print('DAV_T2M_MIN ' , "{:.3f}".format(DAV_t2m_min ), '\n')
-    print('DAV_TOT_PREC ', "{:.3f}".format(DAV_prec_tot), '\n')
+    dav = DAV_metric(hr, lr, obs)
+
+    return dav
+ 
 
 
-    DAV_list = []
-    DAV_list.extend([DAV_t2m_mean, DAV_t2m_max , 
-                     DAV_t2m_min , DAV_prec_tot])
+
+
+
+
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+  
     
-    return DAV_list
+
+
+ 
+          
+
+       
+      
+    
+
+    
+
+
