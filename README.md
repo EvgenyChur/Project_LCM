@@ -20,26 +20,18 @@ In regional climate models, characterization of climate uncertainties due to dif
 </p>
 
  ## Project contains:
- 
 1. The main program for statistical analysis:
     * STAT_project.py
-2. The module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1] calulations:
+2. The module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1]:
     * DAV_metric.py 
-3. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2] calculations    
+3. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2]:    
     * KGE_RMSD.py 
-3. The module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]
+3. The module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]:
     * taylorDiagram.py 
-
-<img src="https://render.githubusercontent.com/render/math?math=KGE =1-\sqrt{(\rho-1)^{2}+(\frac{\sigma_{EXP}}{\sigma_{OBS}}-1)^{2}+(\frac{\mu_{EXP}}{\mu_{OBS}}-1)^{2}}">
-
-<img src="https://render.githubusercontent.com/render/math?math=DAV =\frac{S_{EXP}-S_{CTR}}{S_{CTR}}">  
- 
-
 
 ## Author Contributions:
 MHT acquired the funding, designed and conducted the experiments. MHT performed the analysis and obtained the statistical results. EC helped with evaluation statistics. MHT wrote the manuscript. EC contributed to writing about the performance indices and GitHub page. All authors helped in revising the manuscript. All authors agree to be accountable for the content of the work.
  
-
 ## Conflicts of Interest: 
 The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
 
