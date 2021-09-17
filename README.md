@@ -21,14 +21,14 @@ In regional climate models, characterization of climate uncertainties due to dif
 
  ## Project contains:
 1. The postprocessing scripts for work with COSMO-CLM results:
-    * d
-    * f
-    * f
+    * [HYRAS_refer.sh][HYRAS] - analysed data in comparison with HYRAS dataset (main data for article)  
+    * [GC_refer.sh][GC] - analysed data in comparison with GlobCover2009 experiment (test) 
+    * [G_refer.sh][G] - analysed data in comparison with GLC2000 experiment (test) 
 2. The new Python project with statistical and visualization modules:
-    * STAT_project.py - the main programm for statistical analysis and visualization of COSMO-CLM data
-        + DAV_metric.py - personal module for the distribution added value (DAV) index
-        + KGE_RMSD.py - personal module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index
-        + taylorDiagram.py - personal module for Taylor diagram
+    * [STAT_project.py][stat] - the main programm for statistical analysis and visualization of COSMO-CLM data
+        + [DAV_metric.py][dav] - personal module for the distribution added value (DAV) index
+        + [KGE_RMSD.py][kge] - personal module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index
+        + [taylorDiagram.py][tay] - personal module for Taylor diagram
 
 ## Author Contributions:
 MHT acquired the funding, designed and conducted the experiments. MHT performed the analysis and obtained the statistical results. EC helped with evaluation statistics. MHT wrote the manuscript. EC contributed to writing about the performance indices and GitHub page. All authors helped in revising the manuscript. All authors agree to be accountable for the content of the work.
@@ -43,6 +43,13 @@ This research was funded by the German Research Foundation (DFG) through grant n
 
 
 
+[HYRAS]: https://github.com/EvgenyChur/LU_stat_system/blob/main/HYRAS_refer.sh
+[GC]: https://github.com/EvgenyChur/LU_stat_system/blob/main/GC_refer.sh
+[G]: https://github.com/EvgenyChur/LU_stat_system/blob/main/G_refer.sh
+[stat]:
+[dav]:
+[kge]:
+[tay]:
 
 
 [1]: https://doi.org/10.1002/joc.5261
