@@ -22,11 +22,11 @@ In regional climate models, characterization of climate uncertainties due to dif
  ## Project contains:
 1. The main program for statistical analysis:
     * STAT_project.py
-2. The module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1]:
+2. The module for the distribution added value (DAV) index:
     * DAV_metric.py 
-3. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2]:    
+3. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index:    
     * KGE_RMSD.py 
-3. The module for Taylor diagram vizualization based on work [Taylor., 2001][3] and [Copin., 2018][4]:
+3. The module for Taylor diagram vizualization:
     * taylorDiagram.py 
 
 ## Author Contributions:
