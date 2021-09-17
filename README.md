@@ -46,10 +46,10 @@ This research was funded by the German Research Foundation (DFG) through grant n
 [HYRAS]: https://github.com/EvgenyChur/LU_stat_system/blob/main/HYRAS_refer.sh
 [GC]: https://github.com/EvgenyChur/LU_stat_system/blob/main/GC_refer.sh
 [G]: https://github.com/EvgenyChur/LU_stat_system/blob/main/G_refer.sh
-[stat]:
-[dav]:
-[kge]:
-[tay]:
+[stat]: https://github.com/EvgenyChur/LU_stat_system/blob/main/STAT_project.py
+[dav]: https://github.com/EvgenyChur/LU_stat_system/blob/main/DAV_metric.py
+[kge]: https://github.com/EvgenyChur/LU_stat_system/blob/main/KGE_RMSD.py
+[tay]: https://github.com/EvgenyChur/LU_stat_system/blob/main/taylorDiagram.py
 
 
 [1]: https://doi.org/10.1002/joc.5261
