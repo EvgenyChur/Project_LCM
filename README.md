@@ -16,7 +16,7 @@ In regional climate models, characterization of climate uncertainties due to dif
 ![Figure07](https://github.com/EvgenyChur/LU_stat_system/blob/main/Fig07.JPG) 
 
 <p align="justify">
-<em>Distribution of latent heat flux (A) to (E), LAI (F) to (J), and plant cover (K) to (O) differences between the experimental simulation based on the GLC land cover map (first column), the CCI38 land cover map (second column), the CCI2015 land cover map (third column), the CCI land cover map (fourth column), the ECO land cover map (fifth column) and the control simulation based on the GC land cover map over the vegetation period (May to September) from 2002 to 2011.</em>
+<em>Distribution of latent heat flux (A) to (E), LAI (F) to (J), and plant cover (K) to (O) differences between the experimental simulation based on the GLC (col. 1), CCI38 (col. 2), CCI2015 (col. 3), CCI (col. 4), ECO (col. 5) land cover maps and the control simulation (GC land cover map) over the vegetation period (May to September) from 2002 to 2011.</em>
 </p>
 
  ## Project contains:
