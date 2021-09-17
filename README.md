@@ -1,6 +1,22 @@
-# Uncertainty of different land cover maps on regional climate in convection-permitting climate simulations: role of land-surface characteristics
+# Sensitivity of convection-permitting regional climate simulations to changes in land cover input data: role of land surface characteristics for temperature and climate extremes
 
-The repository contains the main algorithms for statistical analysis of datasets for the research.
+### Authors:
+<p align="justify">
+Merja H. Tölle<sup>1</sup>, Evgenii Churiulin<sup>1</sup>
+
+- Center for Environmental Systems Research, University of Kassel, Wilhelmshöher 5 Allee 47, D-34117 Kassel, Germany
+
+<em><strong>Correspondence to: Merja H. Tölle (merja.toelle@uni-kassel.de)</strong></em>
+
+## The repository description:
+<p align="justify">  
+In regional climate models, characterization of climate uncertainties due to different land cover maps is essential for adaptation strategies. The spatiotemporal heterogeneity in surface characteristics is considered to play a key role in terrestrial surface processes. Here, we quantified the sensitivity of model results to changes in land cover input data (GlobCover2009, GLC2000, CCI, and ECOCLIMAP) in the regional climate model (RCM) COSMO-CLM (v5.0_clm16). We investigated land cover changes due to the retrieval year, number, fraction and spatial distribution of land cover classes by performing convection-permitting simulations driven by ERA5 reanalysis data over Germany from 2002 to 2011. The role of the surface parameters on the surface turbulent fluxes and temperature is examined, which is related to the land cover classes. The annual temperature bias of all the simulations compared with observations is larger than the differences between simulations. The latter is well within the uncertainty of the observations. The land cover class fractional differences are small among the land cover maps. However, some land cover types, such as croplands and urban areas, have greatly changed over the years. These changes can be seen in the temperature differences. Simulations based on the CCI retrieved in 2000 and 2015 revealed no accreditable difference in the climate variables as
+25 the land cover changes that occurred between these years are marginal, and thus, the influence is small over Germany. Increasing the land cover types as in ECOCLIMAP leads to higher temperature variability. The largest differences among the simulations occur in maximum temperature and from spring to autumn, which is the main vegetation period. The temperature differences seen among the simulations relate to changes in the leaf area index, plant coverage, roughness length, latent and sensible heat fluxes due to differences in land cover types. The vegetation fraction was the main parameter affecting the seasonal evolution of the latent heat fluxes based on linear regression analysis, followed by roughness length and leaf area index. If the same natural vegetation or pasture grid cells changed into urban types in another land cover map, daily maximum temperatures changed accordingly. Similarly, differences in climate extreme indices are strongest for any land cover type change to urban areas. The uncertainties in regional temperature due to different land cover datasets were overall lower than the uncertainties associated with climate projections. Although the impact and their implications are different on different spatial and temporal scales as shown for urban area differences in the land cover maps. For future development, more attention should be given to land cover classification in complex areas, including more land cover types or single vegetation species and regional representative classification sample selection. Including more sophisticated urban and vegetation modules in RCMs would improve the underestimation of the urban and vegetation effect on local climate
+</p>
+  
+ ## The repository contains:
+ 
+ The repository contains the main algorithms for statistical analysis of datasets for the research.
 
 The main program for this research is ***STAT_project***, moreover project is related to 3 additional modules: ***DAV_metric***, ***KGE_RMSD***, ***taylorDiagram***
 
