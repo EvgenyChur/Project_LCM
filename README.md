@@ -20,14 +20,26 @@ In regional climate models, characterization of climate uncertainties due to dif
 </p>
 
  ## Project contains:
-1. The main program for statistical analysis:
-    * STAT_project.py
-2. The module for the distribution added value (DAV) index:
-    * DAV_metric.py 
-3. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index:    
-    * KGE_RMSD.py 
-3. The module for Taylor diagram vizualization:
-    * taylorDiagram.py 
+1. The postprocessing scripts for work with COSMO-CLM results:
+    * d
+    * f
+    * f
+2. The new Python project with statistical and visualization modules:
+    * STAT_project.py - the main programm for statistical analysis and visualization of COSMO-CLM data
+       - DAV_metric.py 
+        - KGE_RMSD.py 
+        - taylorDiagram.py 
+4. 
+5. 
+6. main program for statistical analysis:
+    
+7. The module for the distribution added value (DAV) index:
+    * 
+8. The module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index:    
+    * 
+9. The module for Taylor diagram vizualization:
+    * 
+10. She
 
 ## Author Contributions:
 MHT acquired the funding, designed and conducted the experiments. MHT performed the analysis and obtained the statistical results. EC helped with evaluation statistics. MHT wrote the manuscript. EC contributed to writing about the performance indices and GitHub page. All authors helped in revising the manuscript. All authors agree to be accountable for the content of the work.
