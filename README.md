@@ -22,11 +22,18 @@ In regional climate models, characterization of climate uncertainties due to dif
  ## Project contains:
  
 1. The main program for statistical analysis:
-    * ***STAT_project***, moreover project is related to 3 additional modules: ***DAV_metric***, ***KGE_RMSD***, ***taylorDiagram***
+    * STAT_project.py
+2. The module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1] calulations:
+    * DAV_metric.py 
+    * <img src="https://render.githubusercontent.com/render/math?math=DAV =\frac{S_{EXP}-S_{CTR}}{S_{CTR}}">    
+    
+    
+    * 
+    * 
+    * , moreover project is related to 3 additional modules: ***DAV_metric***, ***KGE_RMSD***, ***taylorDiagram***
 
 
-1. The ***DAV_metric*** is a module for the distribution added value (DAV) index [Soares and Cardoso, 2017][1] calulations:
-<img src="https://render.githubusercontent.com/render/math?math=DAV =\frac{S_{EXP}-S_{CTR}}{S_{CTR}}">
+
   
 2. The ***KGE_RMSD*** is a module for the root-mean-square error (RMSE), the Pearson correlation coefficient (ρ) and the Kling-Gupta-Efficiency (KGE) index [Gupta et al., 2009][2] calculations  
 
