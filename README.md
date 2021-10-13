@@ -30,15 +30,19 @@ Land cover input data, land cover change, urban area, climate uncertainty quanti
         + [taylorDiagram.py][tay] - personal module for Taylor diagram
 
 ## Author Contributions:
+<p align="justify"> 
 MHT acquired the funding, designed and conducted the experiments. MHT performed the analysis and obtained the statistical results. EC helped with evaluation statistics. MHT wrote the manuscript. EC contributed to writing about the performance indices and GitHub page. All authors helped in revising the manuscript. All authors agree to be accountable for the content of the work.
- 
+</p>
+
 ## Conflicts of Interest: 
+<p align="justify"> 
 The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
+</p>
 
 ## Funding:
-This research was funded by the German Research Foundation (DFG) through grant number 401857120. Part of the funding is due to the project MAPPY, which is part of AXIS, an ERA-NET initiated by JPI Climate, and funded by national agencies (DLR/BMBF, DE, Grant No. 01LS1907A772 C) with co-funding from the Horizon 2020 - the Framework Programme for Research and Innovation of the European Union.
-
-
+<p align="justify">
+This research was funded by the German Research Foundation (DFG) through grant number 401857120 and MAPPY. The MAPPY project is part of AXIS, an ERA-NET initiated by JPI Climate, and funded by FFG (Austria), F.R.S.-FNRS and BELSPO (Belgium), DLR/BMBF (Germany), NWO (Netherlands) and AEI (Spain) with co-funding by the European Union (Grant No. 776608, Funding reference No. 01LS1903C) with co-funding from the Horizon 2020 - the Framework Programme for Research and Innovation of the European Union. Computational resources were made available by the German Climate Computing Center (DKRZ) through support from the German Federal Ministry of Education and Research (BMBF). This research was conducted in collaboration with the CLM-community.
+</p>
 
 
 
